@@ -39,6 +39,9 @@ urls = [
     # The special no-password login endpoint for development
     path('devlogin/', zerver.views.auth.login_page,
          {'template_name': 'zerver/dev_login.html'}, name='zerver.views.auth.login_page'),
+     # The special no-password login endpoint for development
+
+    path('upbook/', TemplateView.as_view(template_name='upbook/index.html')),
 
     # Page for testing email templates
     path('emails/', zerver.views.development.email_log.email_page),

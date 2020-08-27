@@ -362,7 +362,7 @@ def print_listeners() -> None:
 
     proxy_warning = f"Only the proxy port ({proxy_port}) is exposed."
     print(WARNING + "Note to Vagrant users: " + ENDC + proxy_warning + '\n')
-
+# 
 if options.test:
     do_one_time_webpack_compile()
 else:
