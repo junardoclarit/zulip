@@ -439,7 +439,7 @@ module.exports = content.locals || {};
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/azhrzafar/Desktop/upbook-chat-client/upbook/src/styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! /Users/azhrzafar/Desktop/ng-example/upbook/src/styles.css */"./src/styles.css");
 
 
 /***/ })
