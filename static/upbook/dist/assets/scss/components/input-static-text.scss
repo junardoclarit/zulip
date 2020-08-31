@@ -1,0 +1,56 @@
+@import 'config';
+
+.input-static-text-wrapper {
+  position: relative;
+
+  .input-with-static-text {
+    height: 40px;
+    width: 70px;
+    border: 1px solid #d9dee4;
+    color: $c-dark-3;
+    border-radius: 4px;
+    font-size: 20px;
+    letter-spacing: -0.2px;
+    line-height: 30px;
+    padding: 4px 10px;
+    margin-right: 18px;
+
+    &.ng-invalid.ng-touched {
+      border-color: $c-danger;
+    }
+  }
+
+  .text-over-input {
+    position: absolute;
+    right: 27px;
+    min-width: 16px;
+    top: 6px;
+    background-color: $c-white;
+    color: $c-gray-main;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  .input-with-static-text:disabled {
+    cursor: not-allowed;
+
+    & + .text-over-input {
+      background-color: rgb(235, 235, 228);
+    }
+  }
+
+  &.currency {
+    .input-with-static-text {
+      width: 90px;
+    }
+
+    .text-over-input {
+      font-size: 14px;
+      top: 6px;
+      right: 29px;
+      text-transform: uppercase;
+    }
+  }
+}

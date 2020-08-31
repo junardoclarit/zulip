@@ -1,0 +1,28 @@
+@import 'config';
+
+// Global styles
+bs-datepicker-container {
+  z-index: 10000 !important;
+
+  .v2-datepicker {
+    color: $c-dark-main;
+
+    .days.weeks span.selected {
+      color: $c-blue-light;
+      font-weight: bold;
+    }
+  }
+
+  bs-datepicker-navigation-view {
+    display: flex;
+    justify-content: space-around;
+
+    button:nth-child(3) {
+      margin-left: -13px;
+    }
+  }
+
+  .v2-datepicker .bs-datepicker-head {
+    background-color: $c-blue-light !important;
+  }
+}

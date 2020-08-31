@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="12px" viewBox="0 0 15 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>volume +</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Upbook-UI-v2-call-library-call-details" transform="translate(-858.000000, -334.000000)">
+            <g id="Group-7" transform="translate(490.000000, 178.000000)">
+                <g id="Group-4" transform="translate(20.000000, 150.000000)">
+                    <g id="volume-+" transform="translate(348.000000, 5.000000)">
+                        <polygon id="Fill-3" fill="#FFFFFF" points="6.86833 12.15683 2.74743 9.40933 -7.00000001e-05 9.40933 -7.00000001e-05 4.60173 2.74743 4.60173 6.86833 1.85493"></polygon>
+                        <g id="baseline-close-24px-27" transform="translate(7.000000, 2.000000)">
+                            <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="8 2.60428571 7.39571429 2 5 4.39571429 2.60428571 2 2 2.60428571 4.39571429 5 2 7.39571429 2.60428571 8 5 5.60428571 7.39571429 8 8 7.39571429 5.60428571 5"></polygon>
+                            <polygon id="Shape" points="0 0 10 0 10 10 0 10"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

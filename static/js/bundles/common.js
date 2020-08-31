@@ -16,7 +16,7 @@ import "../../third/bootstrap/css/bootstrap-btn.css";
 import "../../third/bootstrap/css/bootstrap-responsive.css";
 import "simplebar/dist/simplebar.css";
 import "font-awesome/css/font-awesome.css";
-import "../../assets/icons/zulip-icons.font.js";
+import "/static/upbook/dist/assets/icons/zulip-icons.font.js";
 import "source-sans-pro/source-sans-pro.css";
 import "../../styles/pygments.scss";
 import "@uppy/core/dist/style.css";

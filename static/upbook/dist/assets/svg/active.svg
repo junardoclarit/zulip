@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="22px" viewBox="0 0 90 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>E38510CD-DCB2-4EF3-9F29-8F1A2DB56A62@1x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M5.54100309,10.2860018 C5.2541255,9.98721401 4.77934993,9.97755892 4.48056217,10.2644365 C4.18177442,10.5513141 4.17211932,11.0260897 4.45899691,11.3248774 L8.07070129,15.0865273 C8.3617123,15.38962 8.84492115,15.3945328 9.14203446,15.0974195 L17.7091239,6.53033009 C18.0020171,6.23743687 18.0020171,5.76256313 17.7091239,5.46966991 C17.4162307,5.1767767 16.9413569,5.1767767 16.6484637,5.46966991 L8.62259889,13.4955348 L5.54100309,10.2860018 Z" id="path-1"></path>
+    </defs>
+    <g id="VISUAL-MOCKUPS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Version-4---10.10---UPbook---Home" transform="translate(-971.000000, -1339.000000)">
+            <g id="TABLE" transform="translate(158.000000, 474.000000)">
+                <g id="NEW-CLIENTS-CALLS">
+                    <g id="Group-10" transform="translate(0.000000, 66.000000)">
+                        <g id="table-/-row-1-copy-9" transform="translate(0.000000, 780.000000)">
+                            <g id="icon/booked-copy" transform="translate(813.000000, 19.000000)">
+                                <rect id="Rectangle" fill="#74c78a" x="0" y="0" width="90" height="22" rx="11"></rect>
+                                <text id="Booked" font-family="OpenSans-Bold, Open Sans" font-size="11" font-weight="bold" line-spacing="16" fill="#FFFFFF">
+                                    <tspan x="32" y="15">ACTIVE</tspan>
+                                </text>
+                                <g id="icon/checkmark" transform="translate(7.000000, 0.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Path-Copy" fill="#212B36" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                    <g id="color" mask="url(#mask-2)" fill="#FFFFFF">
+                                        <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
