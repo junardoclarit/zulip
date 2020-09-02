@@ -1,111 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>UPbook</title>
-    <base href="/" />
+{% extends "zerver/base.html" %}
+{% set entrypoint = "app" %}
+{# The app itself. #}
+{# Includes some other templates as tabs. #}
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="/static/upbook/dist/assets/images/logo_compact.png" />
+{% block meta_viewport %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<base href="/" />
+{% endblock %}
 
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/gauge.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <script src="/static/upbook/dist/assets/js/aws-sdk-2.595.0.min.js"></script>
-    <script src="https://unpkg.com/aws-amplify@1.1.19/dist/aws-amplify.min.js"></script>
-    <script>
-      !(function() {
-        var analytics = (window.analytics = window.analytics || []);
-        if (!analytics.initialize)
-          if (analytics.invoked) window.console && console.error && console.error('Segment snippet included twice.');
-          else {
-            analytics.invoked = !0;
-            analytics.methods = [
-              'trackSubmit',
-              'trackClick',
-              'trackLink',
-              'trackForm',
-              'pageview',
-              'identify',
-              'reset',
-              'group',
-              'track',
-              'ready',
-              'alias',
-              'debug',
-              'page',
-              'once',
-              'off',
-              'on'
-            ];
-            analytics.factory = function(t) {
-              return function() {
-                var e = Array.prototype.slice.call(arguments);
-                e.unshift(t);
-                analytics.push(e);
-                return analytics;
-              };
+{% block customhead %}
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link href="/static/images/logo/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed">
+
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/gauge.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<script src="/static/upboapp#narrow/is/privateok/dist/assets/js/aws-sdk-2.595.0.min.js"></script>
+<script src="https://unpkg.com/aws-amplify@1.1.19/dist/aws-amplify.min.js"></script>
+<script>
+    !(function() {
+    var analytics = (window.analytics = window.analytics || []);
+    if (!analytics.initialize)
+        if (analytics.invoked) window.console && console.error && console.error('Segment snippet included twice.');
+        else {
+        analytics.invoked = !0;
+        analytics.methods = [
+            'trackSubmit',
+            'trackClick',
+            'trackLink',
+            'trackForm',
+            'pageview',
+            'identify',
+            'reset',
+            'group',
+            'track',
+            'ready',
+            'alias',
+            'debug',
+            'page',
+            'once',
+            'off',
+            'on'
+        ];
+        analytics.factory = function(t) {
+            return function() {
+            var e = Array.prototype.slice.call(arguments);
+            e.unshift(t);
+            analytics.push(e);
+            return analytics;
             };
-            for (var t = 0; t < analytics.methods.length; t++) {
-              var e = analytics.methods[t];
-              analytics[e] = analytics.factory(e);
-            }
-            analytics.load = function(t, e) {
-              var n = document.createElement('script');
-              n.type = 'text/javascript';
-              n.async = !0;
-              n.src = 'https://cdn.segment.com/analytics.js/v1/' + t + '/analytics.min.js';
-              var a = document.getElementsByTagName('script')[0];
-              a.parentNode.insertBefore(n, a);
-              analytics._loadOptions = e;
-            };
-            analytics.SNIPPET_VERSION = '4.1.0';
-            analytics.load('nZ69Imx5r5x99108NPPCnYDicfdS2LXR');
-          }
-      })();
-    </script>
-    <script src="//fast.appcues.com/45701.js"></script>
-    <script>
-      Appcues.identify(45701, {
-        name: 'Michael',
-        email: 'mwarren@dvmelite.com',
-        created_at: 1546819200
-      });
-    </script>
-    <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/upbook/dist/styles.29a2e787d4dc9b6067d0.css"></head>
+        };
+        for (var t = 0; t < analytics.methods.length; t++) {
+            var e = analytics.methods[t];
+            analytics[e] = analytics.factory(e);
+        }
+        analytics.load = function(t, e) {
+            var n = document.createElement('script');
+            n.type = 'text/javascript';
+            n.async = !0;
+            n.src = 'https://cdn.segment.com/analytics.js/v1/' + t + '/analytics.min.js';
+            var a = document.getElementsByTagName('script')[0];
+            a.parentNode.insertBefore(n, a);
+            analytics._loadOptions = e;
+        };
+        analytics.SNIPPET_VERSION = '4.1.0';
+        analytics.load('nZ69Imx5r5x99108NPPCnYDicfdS2LXR');
+        }
+    })();
+</script>
+<script src="//fast.appcues.com/45701.js"></script>
+<script>
+    Appcues.identify(45701, {
+    name: 'Michael',
+    email: 'mwarren@dvmelite.com',
+    created_at: 1546819200
+    });
+</script>
+<link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css" />
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+<link rel="stylesheet" href="/static/upbook/dist/styles.29a2e787d4dc9b6067d0.css">
+{% endblock %}
 
-  <body
-    class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-footer--push m-topbar--on"
-  >
-    <upb-root>
-      <upb-loader>
-        <div class="blockUI blockOverlay upbook-overlay"></div>
-        <div class="blockUI blockMsg blockPage upbook-loader">
-          <div class="m-blockui">
-            <span>Please wait...</span><span><div class="m-loader m-loader--success"></div></span>
+{% block content %}
+
+<div id="zulip-wrapper-main" class="zulip-wrapper" style="display: none;">
+  <div id="zulip-app">
+      {% include "zerver/app/lightbox_overlay.html" %}
+      {% include "zerver/app/subscriptions.html" %}
+      {% include "zerver/app/drafts.html" %}
+      {% include "zerver/app/recent_topics.html" %}
+      <div id="settings_overlay_container" class="overlay" data-overlay="settings" aria-hidden="true">
+          {% include "zerver/app/settings_overlay.html" %}
+      </div>
+
+      {% include "zerver/app/navbar_alerts.html" %}
+      {% include "zerver/app/navbar.html" %}
+
+      <div class="fixed-app">
+          <div class="app-main">
+              <div class="column-middle column-overlay">
+                  <div id="tab_bar_underpadding"></div>
+              </div>
           </div>
-        </div>
-      </upb-loader>
-    </upb-root>
+      </div>
+
+      <div class="app">
+          <div class="alert-box">
+              <div class="alert alert_sidebar alert-error home-error-bar" id="connection-error">
+                  <div class="exit"></div>
+                  {% trans %}<strong class="message">Unable to connect to
+                  Zulip.</strong>  Updates may be delayed.{% endtrans %} {{ _('Retrying soon...') }} <a class="restart_get_events_button">{{ _('Try now.') }}</a>
+              </div>
+              <div class="alert alert_sidebar alert-error home-error-bar" id="zephyr-mirror-error">
+                  <div class="exit"></div>
+                  {# The below isn't tagged for translation
+                  intentionally, because the feature is only used at
+                  MIT. #}
+                  <strong>Your Zephyr mirror is not working.</strong>
+                  <span id="normal-zephyr-mirror-error-text">
+                      We recommend that
+                      you <a class="webathena_login">give Zulip the ability to mirror the messages for you via
+                      WebAthena</a>.  If you'd prefer, you can instead
+                      <a href="/zephyr-mirror" target="_blank" rel="noopener noreferrer">run the
+                      Zephyr mirror script yourself</a> in a screen
+                      session.
+                  </span>
+                  <span id="desktop-zephyr-mirror-error-text" class="notdisplayed">To fix
+                  this, you'll need to use the web interface.</span>
+              </div>
+              <div class="alert alert_sidebar alert-error home-error-bar" id="home-error"></div>
+              <div class="alert alert_sidebar alert-error home-error-bar" id="reloading-application"></div>
+          </div>
+          <div class="app-main">
+              <div class="column-left">
+                  {% include "zerver/app/left_sidebar.html" %}
+              </div>
+              <div class="column-middle">
+                  <div class="column-middle-inner tab-content">
+                      <div class="tab-pane active" id="home">
+                          <div class="fixed-app" id="floating_recipient_bar">
+                              <div class="app-main recipient_bar_content">
+                                  <div class="column-middle column-overlay recipient-bar-main">
+                                      <div class="floating_recipient">
+                                          <div style="display: none;" id="current_label_stream" class="recipient_row">
+                                              <div class="message_label_clickable message_header message_header_stream right_part"></div>
+                                          </div>
+                                          <div style="display: none;" id="current_label_private_message" class="recipient_row">
+                                              <div class="message_label_clickable message_header message_header_private_message right_part"></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div id="alert-bar-container" class="alert-bar-container" style='display: none;'>
+                              <div id="alert-bar" class="alert-bar">
+                                  <div id="alert-bar-contents" class="alert-bar-contents">
+                                      <div id="custom-alert-bar-content"></div>
+                                      <i class="fa fa-remove close-alert-icon" aria-hidden="true"></i>
+                                  </div>
+                              </div>
+                          </div>
+                          {% include "zerver/app/home.html" %}
+                      </div>
+                  </div><!--/tab-content-->
+              </div>
+              <div class="column-right">
+                  {% include "zerver/app/right_sidebar.html" %}
+              </div><!--/right sidebar-->
+          </div><!--/row-->
+          <div class="informational-overlays overlay new-style" data-overlay="informationalOverlays" aria-hidden="true">
+              <div class="overlay-content modal-bg">
+                  <div class="overlay-tabs">
+                      <button class="button no-style exit">&times;</button>
+                  </div>
+                  <div class="overlay-body">
+                      {% include "zerver/app/keyboard_shortcuts.html" %}
+                      {% include "zerver/app/search_operators.html" %}
+                      {% include "zerver/app/markdown_help.html" %}
+                  </div>
+              </div>
+          </div>
+          <div class="user_status_overlay overlay new-style" data-overlay="user_status_overlay" aria-hidden="true">
+              <div class="overlay-content modal-bg">
+                  <div class="user-status-header">
+                      <h1>Set a status</h1>
+                      <div class="exit">
+                          <span class="exit-sign">&times;</span>
+                      </div>
+                  </div>
+                  <div class="modal-body">
+                      <label for="user_status">Status message</label>
+                      <input type="text" class="user_status" maxlength="60" />
+                      <button type="button" class="btn clear_search_button" id="clear_status_message_button" disabled="disabled">
+                          <i class="fa fa-remove" aria-hidden="true"></i>
+                      </button>
+                  </div>
+                  <div class="user-status-options">
+                      <button type="button" class="button no-style user-status-value" data-user-status-value="In a meeting">In a meeting</button>
+                      <button type="button" class="button no-style user-status-value" data-user-status-value="Commuting">Commuting</button>
+                      <button type="button" class="button no-style user-status-value" data-user-status-value="Out sick">Out sick</button>
+                      <button type="button" class="button no-style user-status-value" data-user-status-value="Vacationing">Vacationing</button>
+                      <button type="button" class="button no-style user-status-value" data-user-status-value="Working remotely">Working remotely</button>
+                  </div>
+                  <div class="modal-footer">
+                      <button class="button exit small rounded">Cancel</button>
+                      <button class="sea-green small rounded button set_user_status">
+                          Save
+                      </button>
+                  </div>
+              </div>
+          </div>
+          {% include "zerver/app/invite_user.html" %}
+          {% include "zerver/app/logout.html" %}
+          {% include "zerver/app/deprecation_notice.html" %}
+          <div id="user-profile-modal-holder"></div>
+          <div class='notifications top-right'></div>
+          <div id="delete-topic-modal-holder"></div>
+          <div class="left-sidebar-modal-holder"></div>
+          <div id="move-a-topic-modal-holder"></div>
+      </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block angular %}
+    <div class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-footer--push m-topbar--on">
+        <upb-root>
+        <upb-loader>
+            <div class="blockUI blockOverlay upbook-overlay"></div>
+            <div class="blockUI blockMsg blockPage upbook-loader">
+            <div class="m-blockui">
+                <span>Please wait...</span><span><div class="m-loader m-loader--success"></div></span>
+            </div>
+            </div>
+        </upb-loader>
+        </upb-root>
+    </div>
+{% endblock %}
+
+{% block angularfooter %}
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7181135.js"></script>
     <script type="text/javascript">
-      function onConversationsAPIReady() {
+    function onConversationsAPIReady() {
         // HubSpot Chat window closed by default by operations team request
         // Below code allows chat window to open on load, which was the previous default with Intercom Chat
         // setTimeout(function() {
         //   window.HubSpotConversations.widget.open();
         // }, 5000);
-      }
-      if (window.HubSpotConversations) {
+    }
+    if (window.HubSpotConversations) {
         onConversationsAPIReady();
-      } else {
+    } else {
         window.hsConversationsOnReady = [onConversationsAPIReady];
-      }
+    }
     </script>
     <!-- End of HubSpot Embed Code -->
-  <script type="text/javascript" src="/static/upbook/dist/runtime.8c89e486df962f027205.js"></script><script type="text/javascript" src="/static/upbook/dist/polyfills.7daccc528dd5d5c28208.js"></script><script type="text/javascript" src="/static/upbook/dist/main.51be103da51df7db5dd6.js"></script></body>
-</html>
+    <script type="text/javascript" src="/static/upbook/dist/runtime.cdcf5410139f73fd8c99.js"></script>
+    <script type="text/javascript" src="/static/upbook/dist/polyfills.7daccc528dd5d5c28208.js"></script>
+    <script type="text/javascript" src="/static/upbook/dist/main.51be103da51df7db5dd6.js"></script>
+{% endblock %}
