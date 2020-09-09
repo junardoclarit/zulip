@@ -978,6 +978,8 @@ exports.initialize = function () {
     $(".settings-header.mobile .fa-chevron-left").on("click", () => {
         settings_panel_menu.mobile_deactivate_section();
     });
+
+    $("#user_presences").off();
 };
 
 window.click_handlers = exports;
