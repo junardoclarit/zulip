@@ -43,6 +43,7 @@ from requests import HTTPError
 from social_core.backends.apple import AppleIdAuth
 from social_core.backends.azuread import AzureADOAuth2
 from social_core.backends.base import BaseAuth
+from social_core.backends.cognito import CognitoOAuth2
 from social_core.backends.github import GithubOAuth2, GithubOrganizationOAuth2, GithubTeamOAuth2
 from social_core.backends.gitlab import GitLabOAuth2
 from social_core.backends.google import GoogleOAuth2
@@ -147,6 +148,9 @@ def gitlab_auth_enabled(realm: Optional[Realm]=None) -> bool:
 
 def apple_auth_enabled(realm: Optional[Realm]=None) -> bool:
     return auth_enabled_helper(['Apple'], realm)
+
+def awscognito_auth_enabled(realm: Optional[Realm]=None) -> bool:
+    return auth_enabled_helper(['AWSCognito'], realm)
 
 def saml_auth_enabled(realm: Optional[Realm]=None) -> bool:
     return auth_enabled_helper(['SAML'], realm)
@@ -1692,6 +1696,27 @@ class AppleAuthBackend(SocialAuthMixin, AppleIdAuth):
             # We have an open PR to python-social-auth to clean this up.
             logging.info("/complete/apple/: %s", str(e))
             return None
+
+@external_auth_method
+class AWSCognitoAuthBackend(SocialAuthMixin, CognitoOAuth2):
+    sort_order = 50
+    auth_backend_name = "AWSCognito"
+    name = "cognito"
+    display_icon = "/static/images/landing-page/logos/awscognito-icon.png"
+
+    @classmethod
+    def check_config(cls) -> Optional[HttpResponse]:
+        obligatory_cognito_settings_list = [
+            settings.SOCIAL_AUTH_COGNITO_KEY,
+            settings.SOCIAL_AUTH_COGNITO_POOL_DOMAIN,
+            settings.SOCIAL_AUTH_COGNITO_SECRET,
+        ]
+        return None
+        
+        if any(not setting for setting in obligatory_cognito_settings_list):
+            return redirect_to_config_error("cognito")
+
+        return None
 
 @external_auth_method
 class SAMLAuthBackend(SocialAuthMixin, SAMLAuth):
