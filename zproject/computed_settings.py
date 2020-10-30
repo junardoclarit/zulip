@@ -966,14 +966,14 @@ if len(AUTHENTICATION_BACKENDS) == 1 and (AUTHENTICATION_BACKENDS[0] ==
     HOME_NOT_LOGGED_IN = "/accounts/login/sso/"
     ONLY_SSO = True
 else:
-    HOME_NOT_LOGGED_IN = '/login/'
+    HOME_NOT_LOGGED_IN = '/accounts/login/social/cognito'
     ONLY_SSO = False
 AUTHENTICATION_BACKENDS += ('zproject.backends.ZulipDummyBackend',)
 
 # Redirect to /devlogin/ by default in dev mode
 if DEVELOPMENT:
-    HOME_NOT_LOGGED_IN = '/devlogin/'
-    LOGIN_URL = '/devlogin/'
+    HOME_NOT_LOGGED_IN = '/accounts/login/social/cognito'
+    LOGIN_URL = '/accounts/login/social/cognito'
 
 POPULATE_PROFILE_VIA_LDAP = bool(AUTH_LDAP_SERVER_URI)
 

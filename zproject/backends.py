@@ -1250,7 +1250,7 @@ def social_auth_finish(backend: Any,
     comments below as well as login_or_register_remote_user in
     `zerver/views/auth.py` for the details on how that dispatch works.
     """
-    from zerver.views.auth import login_or_register_remote_user, redirect_and_log_into_subdomain
+    from zerver.views.auth import login_or_register_remote_user, redirect_and_log_into_subdomain, redirect_to_upbook_api
 
     user_profile = kwargs['user_profile']
     return_data = kwargs['return_data']
@@ -1717,6 +1717,11 @@ class AWSCognitoAuthBackend(SocialAuthMixin, CognitoOAuth2):
             return redirect_to_config_error("cognito")
 
         return None
+
+    def user_data(self, access_token, *args, **kwargs):
+        logging.info(access_token)
+        
+        return super().user_data(access_token, *args, **kwargs)
 
 @external_auth_method
 class SAMLAuthBackend(SocialAuthMixin, SAMLAuth):

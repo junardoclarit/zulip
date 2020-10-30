@@ -274,6 +274,7 @@ def login_or_register_remote_user(request: HttpRequest, result: ExternalAuthResu
         redirect_to = "{}?onboarding=true".format(reverse('corporate.views.initial_upgrade'))
 
     redirect_to = get_safe_redirect_to(redirect_to, user_profile.realm.uri)
+    logging.error(user_profile.realm.uri)
     return HttpResponseRedirect(redirect_to)
 
 def finish_desktop_flow(request: HttpRequest, user_profile: UserProfile,
@@ -580,6 +581,9 @@ def redirect_and_log_into_subdomain(result: ExternalAuthResult) -> HttpResponse:
     subdomain_login_uri = (realm.uri
                            + reverse('zerver.views.auth.log_into_subdomain', args=[token]))
     return redirect(subdomain_login_uri)
+
+def redirect_to_upbook_api() -> HttpResponse:
+    return redirect('http://localhost:4600')
 
 def get_dev_users(realm: Optional[Realm]=None, extra_users_count: int=10) -> List[UserProfile]:
     # Development environments usually have only a few users, but
