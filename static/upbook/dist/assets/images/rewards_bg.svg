@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1368" height="240" viewBox="0 0 1368 240">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#5EA225" fill-rule="nonzero" d="M0 0h1368v211H0z"/>
+        <path fill="#5EA225" fill-rule="nonzero" d="M684 240l49-35h-98z"/>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M392 83.2L406.84 94l-5.68-17.44L416 66h-18.2L392 48l-5.8 18H368l14.84 10.56L377.16 94z"/>
+            <path d="M356 38h72v72h-72z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M83 160.2L97.84 171l-5.68-17.44L107 143H88.8L83 125l-5.8 18H59l14.84 10.56L68.16 171z"/>
+            <path d="M47 115h72v72H47z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M1253 64.2l14.84 10.8-5.68-17.44L1277 47h-18.2l-5.8-18-5.8 18H1229l14.84 10.56-5.68 17.44z"/>
+            <path d="M1217 19h72v72h-72z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M929 142.2l14.84 10.8-5.68-17.44L953 125h-18.2l-5.8-18-5.8 18H905l14.84 10.56-5.68 17.44z"/>
+            <path d="M893 97h72v72h-72z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M958 60.6l7.42 5.4-2.84-8.72L970 52h-9.1l-2.9-9-2.9 9H946l7.42 5.28-2.84 8.72z"/>
+            <path d="M940 38h36v36h-36z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M485 145.6l7.42 5.4-2.84-8.72L497 137h-9.1l-2.9-9-2.9 9H473l7.42 5.28-2.84 8.72z"/>
+            <path d="M467 123h36v36h-36z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M77 49.6l7.42 5.4-2.84-8.72L89 41h-9.1L77 32l-2.9 9H65l7.42 5.28L69.58 55z"/>
+            <path d="M59 27h36v36H59z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M234 137.6l7.42 5.4-2.84-8.72L246 129h-9.1l-2.9-9-2.9 9H222l7.42 5.28-2.84 8.72z"/>
+            <path d="M216 115h36v36h-36z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M282 48.6l7.42 5.4-2.84-8.72L294 40h-9.1l-2.9-9-2.9 9H270l7.42 5.28-2.84 8.72z"/>
+            <path d="M264 26h36v36h-36z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M1160 140.6l7.42 5.4-2.84-8.72L1172 132h-9.1l-2.9-9-2.9 9h-9.1l7.42 5.28-2.84 8.72z"/>
+            <path d="M1142 118h36v36h-36z"/>
+        </g>
+        <g opacity=".096">
+            <path fill="#FFF" fill-rule="nonzero" d="M1067 75.6l7.42 5.4-2.84-8.72L1079 67h-9.1l-2.9-9-2.9 9h-9.1l7.42 5.28-2.84 8.72z"/>
+            <path d="M1049 53h36v36h-36z"/>
+        </g>
+    </g>
+</svg>

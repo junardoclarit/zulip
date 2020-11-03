@@ -43,6 +43,7 @@ from requests import HTTPError
 from social_core.backends.apple import AppleIdAuth
 from social_core.backends.azuread import AzureADOAuth2
 from social_core.backends.base import BaseAuth
+from social_core.backends.cognito import CognitoOAuth2
 from social_core.backends.github import GithubOAuth2, GithubOrganizationOAuth2, GithubTeamOAuth2
 from social_core.backends.gitlab import GitLabOAuth2
 from social_core.backends.google import GoogleOAuth2
@@ -94,6 +95,7 @@ from zerver.models import (
 )
 
 redis_client = get_redis_client()
+awsToken = ''
 
 # This first batch of methods is used by other code in Zulip to check
 # whether a given authentication backend is enabled for a given realm.
@@ -147,6 +149,9 @@ def gitlab_auth_enabled(realm: Optional[Realm]=None) -> bool:
 
 def apple_auth_enabled(realm: Optional[Realm]=None) -> bool:
     return auth_enabled_helper(['Apple'], realm)
+
+def awscognito_auth_enabled(realm: Optional[Realm]=None) -> bool:
+    return auth_enabled_helper(['AWSCognito'], realm)
 
 def saml_auth_enabled(realm: Optional[Realm]=None) -> bool:
     return auth_enabled_helper(['SAML'], realm)
@@ -988,7 +993,7 @@ class ExternalAuthResult:
         if self.user_profile is not None:
             # Ensure data inconsistent with the user_profile wasn't passed in inside the data_dict argument.
             assert 'full_name' not in data_dict or data_dict['full_name'] == self.user_profile.full_name
-            assert 'email' not in data_dict or data_dict['email'] == self.user_profile.delivery_email
+            assert 'email' not in data_dict or data_dict['email'].lower() == self.user_profile.delivery_email.lower()
             # Update these data_dict fields to ensure consistency with self.user_profile. This is mostly
             # defensive code, but is useful in these scenarios:
             # 1. user_profile argument was passed in, and no full_name or email_data in the data_dict arg.
@@ -1359,7 +1364,7 @@ def social_auth_finish(backend: Any,
     # cryptographically signed token) to a route on
     # subdomain.zulip.example.com that will verify the signature and
     # then call login_or_register_remote_user.
-    return redirect_and_log_into_subdomain(result)
+    return redirect_and_log_into_subdomain(result, awsToken)
 
 class SocialAuthMixin(ZulipAuthMixin, ExternalAuthMethod, BaseAuth):
     # Whether we expect that the full_name value obtained by the
@@ -1692,6 +1697,33 @@ class AppleAuthBackend(SocialAuthMixin, AppleIdAuth):
             # We have an open PR to python-social-auth to clean this up.
             logging.info("/complete/apple/: %s", str(e))
             return None
+
+@external_auth_method
+class AWSCognitoAuthBackend(SocialAuthMixin, CognitoOAuth2):
+    sort_order = 50
+    auth_backend_name = "AWSCognito"
+    name = "cognito"
+    display_icon = "/static/images/landing-page/logos/awscognito-icon.png"
+
+    @classmethod
+    def check_config(cls) -> Optional[HttpResponse]:
+        obligatory_cognito_settings_list = [
+            settings.SOCIAL_AUTH_COGNITO_KEY,
+            settings.SOCIAL_AUTH_COGNITO_POOL_DOMAIN,
+            settings.SOCIAL_AUTH_COGNITO_SECRET,
+        ]
+        return None
+        
+        if any(not setting for setting in obligatory_cognito_settings_list):
+            return redirect_to_config_error("cognito")
+
+        return None
+
+    def user_data(self, access_token, *args, **kwargs):
+        global awsToken
+        awsToken = access_token
+        
+        return super().user_data(access_token, *args, **kwargs)
 
 @external_auth_method
 class SAMLAuthBackend(SocialAuthMixin, SAMLAuth):

@@ -96,6 +96,7 @@ from zerver.views.auth import maybe_send_to_registration
 from zproject.backends import (
     AUTH_BACKEND_NAME_MAP,
     AppleAuthBackend,
+    AWSCognitoAuthBackend,
     AzureADAuthBackend,
     DevAuthBackend,
     EmailAuthBackend,
@@ -119,6 +120,7 @@ from zproject.backends import (
     ZulipLDAPUserPopulator,
     ZulipRemoteUserBackend,
     apple_auth_enabled,
+    awscognito_auth_enabled,
     check_password_strength,
     dev_auth_enabled,
     email_belongs_to_ldap,
@@ -2770,6 +2772,33 @@ class GitLabAuthBackendTest(SocialAuthBase):
     def get_account_data_dict(self, email: str, name: str) -> Dict[str, Any]:
         return dict(email=email, name=name, email_verified=True)
 
+class AWSCognitoAuthBackendTest(SocialAuthBase):
+    __unittest_skip__ = False
+
+    BACKEND_CLASS = AWSCognitoAuthBackend
+    CLIENT_KEY_SETTING = "SOCIAL_AUTH_COGNITO_KEY"
+    CLIENT_SECRET_SETTING = "SOCIAL_AUTH_COGNITO_SECRET"
+    LOGIN_URL = "/accounts/login/social/cognito"
+    SIGNUP_URL = "/accounts/register/social/cognito"
+    AUTHORIZATION_URL = "https://example.com/login"
+    ACCESS_TOKEN_URL = "https://example.com/oauth2/token"
+    USER_INFO_URL = "https://example.com/oauth2/userInfo"
+    AUTH_FINISH_URL = "/complete/cognito/"
+    CONFIG_ERROR_URL = "/config-error/cognito"
+
+    def test_awscognito_auth_enabled(self) -> None:
+        with self.settings(AUTHENTICATION_BACKENDS=('zproject.backends.AWSCognitoAuthBackend',)):
+            self.assertTrue(awscognito_auth_enabled())
+
+    def get_account_data_dict(self, email: str, name: str) -> Dict[str, Any]:
+        names = name.split(' ')
+        given_name = None
+        family_name = None
+        if len(names) == 2:
+            given_name = names[0]
+            family_name = names[1]
+        return dict(email=email, name=name, email_verified=True, given_name=given_name, family_name=family_name)
+
 class GoogleAuthBackendTest(SocialAuthBase):
     __unittest_skip__ = False
 
@@ -3578,6 +3607,14 @@ class TestZulipRemoteUserBackend(DesktopFlowTestingLib, ZulipTestCase):
         with self.settings(AUTHENTICATION_BACKENDS=('zproject.backends.ZulipRemoteUserBackend',),
                            SSO_APPEND_DOMAIN='zulip.com'):
             result = self.client_get('/accounts/login/sso/', REMOTE_USER=username)
+            self.assertEqual(result.status_code, 302)
+            self.assert_logged_in_user_id(user_profile.id)
+
+    def test_login_case_insensitive(self) -> None:
+        user_profile = self.example_user('hamlet')
+        email_upper = user_profile.delivery_email.upper()
+        with self.settings(AUTHENTICATION_BACKENDS=('zproject.backends.ZulipRemoteUserBackend',)):
+            result = self.client_get('/accounts/login/sso/', REMOTE_USER=email_upper)
             self.assertEqual(result.status_code, 302)
             self.assert_logged_in_user_id(user_profile.id)
 

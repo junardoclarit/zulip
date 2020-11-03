@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>UPbook</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="assets/images/logo_compact.png" />
+
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="https://www.amcharts.com/lib/3/gauge.js"></script>
+    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="./assets/js/aws-sdk-2.595.0.min.js"></script>
+    <script src="https://unpkg.com/aws-amplify@1.1.19/dist/aws-amplify.min.js"></script>
+    <script>
+      !(function() {
+        var analytics = (window.analytics = window.analytics || []);
+        if (!analytics.initialize)
+          if (analytics.invoked) window.console && console.error && console.error('Segment snippet included twice.');
+          else {
+            analytics.invoked = !0;
+            analytics.methods = [
+              'trackSubmit',
+              'trackClick',
+              'trackLink',
+              'trackForm',
+              'pageview',
+              'identify',
+              'reset',
+              'group',
+              'track',
+              'ready',
+              'alias',
+              'debug',
+              'page',
+              'once',
+              'off',
+              'on'
+            ];
+            analytics.factory = function(t) {
+              return function() {
+                var e = Array.prototype.slice.call(arguments);
+                e.unshift(t);
+                analytics.push(e);
+                return analytics;
+              };
+            };
+            for (var t = 0; t < analytics.methods.length; t++) {
+              var e = analytics.methods[t];
+              analytics[e] = analytics.factory(e);
+            }
+            analytics.load = function(t, e) {
+              var n = document.createElement('script');
+              n.type = 'text/javascript';
+              n.async = !0;
+              n.src = 'https://cdn.segment.com/analytics.js/v1/' + t + '/analytics.min.js';
+              var a = document.getElementsByTagName('script')[0];
+              a.parentNode.insertBefore(n, a);
+              analytics._loadOptions = e;
+            };
+            analytics.SNIPPET_VERSION = '4.1.0';
+            analytics.load('nZ69Imx5r5x99108NPPCnYDicfdS2LXR');
+          }
+      })();
+    </script>
+    <script src="//fast.appcues.com/45701.js"></script>
+    <script>
+      Appcues.identify(45701, {
+        name: 'Michael',
+        email: 'mwarren@dvmelite.com',
+        created_at: 1546819200
+      });
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/upbook/dist/styles.582de232ff17dbb62d87.css"></head>
+
+  <body
+    class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-footer--push m-topbar--on"
+  >
+    <upb-root>
+      <upb-loader>
+        <div class="blockUI blockOverlay upbook-overlay"></div>
+        <div class="blockUI blockMsg blockPage upbook-loader">
+          <div class="m-blockui">
+            <span>Please wait...</span><span><div class="m-loader m-loader--success"></div></span>
+          </div>
+        </div>
+      </upb-loader>
+    </upb-root>
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/7181135.js"></script>
+    <script type="text/javascript">
+      function onConversationsAPIReady() {
+        // HubSpot Chat window closed by default by operations team request
+        // Below code allows chat window to open on load, which was the previous default with Intercom Chat
+        // setTimeout(function() {
+        //   window.HubSpotConversations.widget.open();
+        // }, 5000);
+      }
+      if (window.HubSpotConversations) {
+        onConversationsAPIReady();
+      } else {
+        window.hsConversationsOnReady = [onConversationsAPIReady];
+      }
+    </script>
+    <!-- End of HubSpot Embed Code -->
+  <script type="text/javascript" src="/static/upbook/dist/runtime.2dbf8847248adf98702a.js"></script><script type="text/javascript" src="/static/upbook/dist/polyfills.2ec12223e06c19df7b89.js"></script><script type="text/javascript" src="/static/upbook/dist/main.951ac2f0d0ceeb860411.js"></script></body>
+</html>

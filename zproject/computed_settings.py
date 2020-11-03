@@ -326,24 +326,17 @@ RABBITMQ_PASSWORD = get_secret("rabbitmq_password")
 
 SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
-# Compress large values being stored in memcached; this is important
-# for at least the realm_users cache.
-PYLIBMC_MIN_COMPRESS_LEN = 100 * 1024
-PYLIBMC_COMPRESS_LEVEL = 1
-
 MEMCACHED_PASSWORD = get_secret("memcached_password")
 
 CACHES = {
     'default': {
-        'BACKEND': 'django_pylibmc.memcached.PyLibMCCache',
+        'BACKEND': 'django_bmemcached.memcached.BMemcached',
         'LOCATION': MEMCACHED_LOCATION,
-        'TIMEOUT': 3600,
-        'BINARY': True,
-        'USERNAME': MEMCACHED_USERNAME,
-        'PASSWORD': MEMCACHED_PASSWORD,
         'OPTIONS': {
-            'tcp_nodelay': True,
-            'retry_timeout': 1,
+            'socket_timeout': 3600,
+            'username': MEMCACHED_USERNAME,
+            'password': MEMCACHED_PASSWORD,
+            'pickle_protocol': 4,
         },
     },
     'database': {
@@ -399,8 +392,6 @@ REDIS_PASSWORD = get_secret('redis_password')
 ########################################################################
 # SECURITY SETTINGS
 ########################################################################
-
-SESSION_COOKIE_SAMESITE = 'Lax'
 
 # Tell the browser to never send our cookies without encryption, e.g.
 # when executing the initial http -> https redirect.
@@ -975,14 +966,14 @@ if len(AUTHENTICATION_BACKENDS) == 1 and (AUTHENTICATION_BACKENDS[0] ==
     HOME_NOT_LOGGED_IN = "/accounts/login/sso/"
     ONLY_SSO = True
 else:
-    HOME_NOT_LOGGED_IN = '/login/'
+    HOME_NOT_LOGGED_IN = '/accounts/login/social/cognito'
     ONLY_SSO = False
 AUTHENTICATION_BACKENDS += ('zproject.backends.ZulipDummyBackend',)
 
 # Redirect to /devlogin/ by default in dev mode
 if DEVELOPMENT:
-    HOME_NOT_LOGGED_IN = '/devlogin/'
-    LOGIN_URL = '/devlogin/'
+    HOME_NOT_LOGGED_IN = '/accounts/login/social/cognito'
+    LOGIN_URL = '/accounts/login/social/cognito'
 
 POPULATE_PROFILE_VIA_LDAP = bool(AUTH_LDAP_SERVER_URI)
 
@@ -1052,6 +1043,8 @@ SOCIAL_AUTH_GOOGLE_SECRET = get_secret('social_auth_google_secret')
 GOOGLE_OAUTH2_CLIENT_SECRET = get_secret('google_oauth2_client_secret')
 SOCIAL_AUTH_GOOGLE_KEY = SOCIAL_AUTH_GOOGLE_KEY or GOOGLE_OAUTH2_CLIENT_ID
 SOCIAL_AUTH_GOOGLE_SECRET = SOCIAL_AUTH_GOOGLE_SECRET or GOOGLE_OAUTH2_CLIENT_SECRET
+
+SOCIAL_AUTH_COGNITO_SECRET = get_secret('social_auth_cognito_secret')
 
 if PRODUCTION:
     SOCIAL_AUTH_SAML_SP_PUBLIC_CERT = get_from_file_if_exists("/etc/zulip/saml/zulip-cert.crt")

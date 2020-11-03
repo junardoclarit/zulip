@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="65px" height="42px" viewBox="0 0 65 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>Call Pause Button@1x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="components-/-controls-/-call-pause" fill="#FFFFFF">
+            <path d="M4,0 L61,0 C63.209139,-4.05812251e-16 65,1.790861 65,4 L65,38 C65,40.209139 63.209139,42 61,42 L4,42 C1.790861,42 2.705415e-16,40.209139 0,38 L0,4 C-2.705415e-16,1.790861 1.790861,4.05812251e-16 4,0 Z M26,11 C25.4477153,11 25,11.4477153 25,12 L25,30 C25,30.5522847 25.4477153,31 26,31 L30,31 C30.5522847,31 31,30.5522847 31,30 L31,12 C31,11.4477153 30.5522847,11 30,11 L26,11 Z M35,11 C34.4477153,11 34,11.4477153 34,12 L34,30 C34,30.5522847 34.4477153,31 35,31 L39,31 C39.5522847,31 40,30.5522847 40,30 L40,12 C40,11.4477153 39.5522847,11 39,11 L35,11 Z" id="Call-Pause-Button"></path>
+        </g>
+    </g>
+</svg>

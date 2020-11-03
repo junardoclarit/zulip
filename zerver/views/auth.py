@@ -50,6 +50,8 @@ from zerver.lib.user_agent import parse_user_agent
 from zerver.lib.users import get_api_key
 from zerver.lib.utils import has_api_key_format
 from zerver.lib.validator import validate_login_email
+from zproject.config import get_secret
+
 from zerver.models import (
     PreregistrationUser,
     Realm,
@@ -61,6 +63,7 @@ from zerver.models import (
 from zerver.signals import email_on_new_login
 from zproject.backends import (
     AUTH_BACKEND_NAME_MAP,
+    AWSCognitoAuthBackend,
     ExternalAuthDataDict,
     ExternalAuthResult,
     SAMLAuthBackend,
@@ -77,6 +80,7 @@ from zproject.backends import (
 )
 
 ExtraContext = Optional[Dict[str, Any]]
+awsToken = ''
 
 def get_safe_redirect_to(url: str, redirect_host: str) -> str:
     is_url_safe = is_safe_url(url=url, allowed_hosts=None)
@@ -273,7 +277,10 @@ def login_or_register_remote_user(request: HttpRequest, result: ExternalAuthResu
         redirect_to = "{}?onboarding=true".format(reverse('corporate.views.initial_upgrade'))
 
     redirect_to = get_safe_redirect_to(redirect_to, user_profile.realm.uri)
-    return HttpResponseRedirect(redirect_to)
+    logging.error(user_profile.realm.uri)
+    # return HttpResponseRedirect(redirect_to)
+
+    return redirect_to_upbook_api()
 
 def finish_desktop_flow(request: HttpRequest, user_profile: UserProfile,
                         otp: str) -> HttpResponse:
@@ -523,6 +530,11 @@ def start_social_login(request: HttpRequest, backend: str, extra_arg: Optional[s
         if not (getattr(settings, key_setting) and getattr(settings, secret_setting)):
             return redirect_to_config_error(backend)
 
+    if backend == "cognito":
+        result = AWSCognitoAuthBackend.check_config()
+        if result is not None:
+            return result
+
     return oauth_redirect_to_root(request, backend_url, 'social', extra_url_params=extra_url_params)
 
 @handle_desktop_flow
@@ -568,12 +580,19 @@ def log_into_subdomain(request: HttpRequest, token: str) -> HttpResponse:
 
     return login_or_register_remote_user(request, result)
 
-def redirect_and_log_into_subdomain(result: ExternalAuthResult) -> HttpResponse:
+def redirect_and_log_into_subdomain(result: ExternalAuthResult, awsAccessToken) -> HttpResponse:
+    global awsToken
+    awsToken = awsAccessToken
+
     token = result.store_data()
     realm = get_realm(result.data_dict["subdomain"])
     subdomain_login_uri = (realm.uri
                            + reverse('zerver.views.auth.log_into_subdomain', args=[token]))
     return redirect(subdomain_login_uri)
+
+def redirect_to_upbook_api() -> HttpResponse:
+    response = redirect(get_secret('upbook_api_url') + '/api/v1/auth/token/code/zulip?access_token=' + awsToken)
+    return response
 
 def get_dev_users(realm: Optional[Realm]=None, extra_users_count: int=10) -> List[UserProfile]:
     # Development environments usually have only a few users, but
@@ -1006,6 +1025,7 @@ def config_error_view(request: HttpRequest, error_category_name: str) -> HttpRes
         'google': {'social_backend_name': 'google', 'has_markdown_file': True},
         'github': {'social_backend_name': 'github', 'has_markdown_file': True},
         'gitlab': {'social_backend_name': 'gitlab', 'has_markdown_file': True},
+        'cognito': {'social_backend_name': 'cognito', 'has_markdown_file': True},
         'ldap': {'error_name': 'ldap_error_realm_is_none'},
         'dev': {'error_name': 'dev_not_supported_error'},
         'saml': {'social_backend_name': 'saml'},

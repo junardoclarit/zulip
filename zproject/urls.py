@@ -419,6 +419,10 @@ v1_api_and_json_patterns = [
 # endpoint for use by code), you should add it here.
 i18n_urls = [
     path('', zerver.views.home.home, name='zerver.views.home.home'),
+    path('app', zerver.views.home.home, name='zerver.views.home.home'),
+    path('app/v2', zerver.views.home.home, name='zerver.views.home.home'),
+    path('app/v2/texting', zerver.views.home.home, name='zerver.views.home.home'),
+    path('app/v2/settings/texting', zerver.views.home.home, name='zerver.views.home.home'),
     # We have a desktop-specific landing page in case we change our /
     # to not log in in the future. We don't want to require a new
     # desktop app build for everyone in that case

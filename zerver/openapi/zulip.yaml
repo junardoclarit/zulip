@@ -3269,6 +3269,10 @@ paths:
                             description: |
                               Whether the user can authenticate using their google account.
                             type: boolean
+                          awscognito:
+                            description: |
+                              Whether the user can authenticate using their aws cognito account.
+                            type: boolean
                           saml:
                             description: |
                               Whether the user can authenticate using saml.
