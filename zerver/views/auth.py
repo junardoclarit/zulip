@@ -50,6 +50,8 @@ from zerver.lib.user_agent import parse_user_agent
 from zerver.lib.users import get_api_key
 from zerver.lib.utils import has_api_key_format
 from zerver.lib.validator import validate_login_email
+from zproject.config import get_secret
+
 from zerver.models import (
     PreregistrationUser,
     Realm,
@@ -78,6 +80,7 @@ from zproject.backends import (
 )
 
 ExtraContext = Optional[Dict[str, Any]]
+awsToken = ''
 
 def get_safe_redirect_to(url: str, redirect_host: str) -> str:
     is_url_safe = is_safe_url(url=url, allowed_hosts=None)
@@ -275,7 +278,9 @@ def login_or_register_remote_user(request: HttpRequest, result: ExternalAuthResu
 
     redirect_to = get_safe_redirect_to(redirect_to, user_profile.realm.uri)
     logging.error(user_profile.realm.uri)
-    return HttpResponseRedirect(redirect_to)
+    # return HttpResponseRedirect(redirect_to)
+
+    return redirect_to_upbook_api()
 
 def finish_desktop_flow(request: HttpRequest, user_profile: UserProfile,
                         otp: str) -> HttpResponse:
@@ -575,7 +580,10 @@ def log_into_subdomain(request: HttpRequest, token: str) -> HttpResponse:
 
     return login_or_register_remote_user(request, result)
 
-def redirect_and_log_into_subdomain(result: ExternalAuthResult) -> HttpResponse:
+def redirect_and_log_into_subdomain(result: ExternalAuthResult, awsAccessToken) -> HttpResponse:
+    global awsToken
+    awsToken = awsAccessToken
+
     token = result.store_data()
     realm = get_realm(result.data_dict["subdomain"])
     subdomain_login_uri = (realm.uri
@@ -583,7 +591,8 @@ def redirect_and_log_into_subdomain(result: ExternalAuthResult) -> HttpResponse:
     return redirect(subdomain_login_uri)
 
 def redirect_to_upbook_api() -> HttpResponse:
-    return redirect('http://localhost:4600')
+    response = redirect(get_secret('upbook_api_url') + '/api/v1/auth/token/code/zulip?access_token=' + awsToken)
+    return response
 
 def get_dev_users(realm: Optional[Realm]=None, extra_users_count: int=10) -> List[UserProfile]:
     # Development environments usually have only a few users, but

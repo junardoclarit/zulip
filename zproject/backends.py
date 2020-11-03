@@ -95,6 +95,7 @@ from zerver.models import (
 )
 
 redis_client = get_redis_client()
+awsToken = ''
 
 # This first batch of methods is used by other code in Zulip to check
 # whether a given authentication backend is enabled for a given realm.
@@ -1250,7 +1251,7 @@ def social_auth_finish(backend: Any,
     comments below as well as login_or_register_remote_user in
     `zerver/views/auth.py` for the details on how that dispatch works.
     """
-    from zerver.views.auth import login_or_register_remote_user, redirect_and_log_into_subdomain, redirect_to_upbook_api
+    from zerver.views.auth import login_or_register_remote_user, redirect_and_log_into_subdomain
 
     user_profile = kwargs['user_profile']
     return_data = kwargs['return_data']
@@ -1363,7 +1364,7 @@ def social_auth_finish(backend: Any,
     # cryptographically signed token) to a route on
     # subdomain.zulip.example.com that will verify the signature and
     # then call login_or_register_remote_user.
-    return redirect_and_log_into_subdomain(result)
+    return redirect_and_log_into_subdomain(result, awsToken)
 
 class SocialAuthMixin(ZulipAuthMixin, ExternalAuthMethod, BaseAuth):
     # Whether we expect that the full_name value obtained by the
@@ -1719,7 +1720,8 @@ class AWSCognitoAuthBackend(SocialAuthMixin, CognitoOAuth2):
         return None
 
     def user_data(self, access_token, *args, **kwargs):
-        logging.info(access_token)
+        global awsToken
+        awsToken = access_token
         
         return super().user_data(access_token, *args, **kwargs)
 
