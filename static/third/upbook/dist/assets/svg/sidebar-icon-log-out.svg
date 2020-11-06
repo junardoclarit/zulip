@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>D62AE93A-3FC7-4AF2-80EB-3A1A589F402B@1x</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M17.7928932,11 L14.4797799,7.68688672 C14.2845178,7.49162458 14.2845178,7.17504209 14.4797799,6.97977994 C14.6750421,6.7845178 14.9916246,6.7845178 15.1868867,6.97977994 L19.3535534,11.1464466 C19.5488155,11.3417088 19.5488155,11.6582912 19.3535534,11.8535534 L15.1868867,16.0202201 C14.9916246,16.2154822 14.6750421,16.2154822 14.4797799,16.0202201 C14.2845178,15.8249579 14.2845178,15.5083754 14.4797799,15.3131133 L17.7928932,12 L9,12 C8.72385763,12 8.5,11.7761424 8.5,11.5 C8.5,11.2238576 8.72385763,11 9,11 L17.7928932,11 Z M9,18.5 C9.27614237,18.5 9.5,18.7238576 9.5,19 C9.5,19.2761424 9.27614237,19.5 9,19.5 L5.66666667,19.5 C4.47004971,19.5 3.5,18.5299503 3.5,17.3333333 L3.5,5.66666667 C3.5,4.47004971 4.47004971,3.5 5.66666667,3.5 L9,3.5 C9.27614237,3.5 9.5,3.72385763 9.5,4 C9.5,4.27614237 9.27614237,4.5 9,4.5 L5.66666667,4.5 C5.02233446,4.5 4.5,5.02233446 4.5,5.66666667 L4.5,17.3333333 C4.5,17.9776655 5.02233446,18.5 5.66666667,18.5 L9,18.5 Z" id="path-1"></path>
+    </defs>
+    <g id="VISUAL-MOCKUPS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="1">
+        <g id="Version-4---10.10---UPbook---Home" transform="translate(-21.000000, -1375.000000)">
+            <g id="menu">
+                <g id="menu-/-8---Log-out" transform="translate(0.000000, 1363.000000)">
+                    <g id="icon/home-copy-2" transform="translate(18.000000, 9.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="Combined-Shape" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-1"></use>
+                        <g id="color" mask="url(#mask-2)" fill="#FFFFFF">
+                            <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

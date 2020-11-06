@@ -1,0 +1,29 @@
+<svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+  <title>form/checkbox/overrides/selected@1x</title>
+  <desc>Created with Sketch.</desc>
+  <defs>
+    <polygon points="7.12222222 0 6.35555556 0.8 3.26666667 3.88888889 2.36666667 3.02222222 1.56666667 2.22222222 8.8817842e-16 3.78888889 0.8 4.58888889 2.46666667 6.25555556 3.23333333 7.05555556 4.03333333 6.25555556 7.92222222 2.36666667 8.72222222 1.56666667" id="path-1"/>
+  </defs>
+  <g>
+    <title>background</title>
+    <rect fill="#30abbb" id="canvas_background" height="18" width="18" x="-1" y="-1"/>
+  </g>
+  <g>
+    <title>Layer 1</title>
+    <g fill-rule="evenodd" fill="none" id="form/checkbox/overrides/selected">
+      <rect rx="2" height="16" width="16" stroke="#fff" id="box"/>
+      <g id="icons/dark/check">
+        <mask id="mask-2">
+          <use id="svg_1" xlink:href="#path-1"/>
+        </mask>
+        <use x="3.555556" y="4.666667" xlink:href="#path-1" fill-rule="nonzero" fill="#fff" id="Mask"/>
+        <g fill="#fff" mask="url(#mask-2)" id="color/main">
+          <g id="svg_2">
+            <rect id="svg_3" rx="2" height="10" width="10" y="3" x="3"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

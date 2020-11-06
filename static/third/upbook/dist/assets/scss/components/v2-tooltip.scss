@@ -1,0 +1,31 @@
+@import 'config';
+
+.v2-tooltip {
+  font-family: $font-family;
+
+  &.wide.tooltip .tooltip-inner {
+    max-width: 248px !important;
+  }
+
+  &.tooltip {
+    opacity: 1;
+
+    .tooltip-inner {
+      background-color: $c-white;
+      color: $c-dark-main;
+      box-shadow: 0 0 15px 1px rgba(113, 106, 202, 0.2);
+      padding: 10px 15px;
+      text-align: left;
+      line-height: 16.8px;
+      font-size: 13px;
+    }
+
+    &.bottom .tooltip-arrow:before,
+    &.bottom .tooltip-arrow,
+    &.top .tooltip-arrow:before,
+    &.top .tooltip-arrow {
+      border-bottom-color: $c-white;
+      border-top-color: $c-white;
+    }
+  }
+}

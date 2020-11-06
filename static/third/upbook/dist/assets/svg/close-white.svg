@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="19px" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+  <title>D254E2CD-8EE2-4781-9EC6-0C1FB0A8A777@1x</title>
+  <desc>Created with sketchtool.</desc>
+  <defs>
+    <path d="M10.7928932,11.5 L2.64644661,3.35355339 C2.45118446,3.15829124 2.45118446,2.84170876 2.64644661,2.64644661 C2.84170876,2.45118446 3.15829124,2.45118446 3.35355339,2.64644661 L11.5,10.7928932 L19.6464466,2.64644661 C19.8417088,2.45118446 20.1582912,2.45118446 20.3535534,2.64644661 C20.5488155,2.84170876 20.5488155,3.15829124 20.3535534,3.35355339 L12.2071068,11.5 L20.3535534,19.6464466 C20.5488155,19.8417088 20.5488155,20.1582912 20.3535534,20.3535534 C20.1582912,20.5488155 19.8417088,20.5488155 19.6464466,20.3535534 L11.5,12.2071068 L3.35355339,20.3535534 C3.15829124,20.5488155 2.84170876,20.5488155 2.64644661,20.3535534 C2.45118446,20.1582912 2.45118446,19.8417088 2.64644661,19.6464466 L10.7928932,11.5 Z" id="path-1"></path>
+  </defs>
+  <g id="VISUAL-MOCKUPS" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Version-4---10.20---UPbook---Call-Details---Comments" transform="translate(-1145.000000, -68.000000)">
+      <g id="CALL-DETAILS" transform="translate(241.000000, 38.000000)">
+        <g id="icon/close-2" transform="translate(902.000000, 28.000000)">
+          <g id="icon/status/misuse/24" transform="translate(3.000000, 3.000000)" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M0,17 L17,0" id="Path"></path>
+            <path d="M0,17 L17,0" id="Path-Copy" transform="translate(8.500000, 8.500000) scale(1, -1) translate(-8.500000, -8.500000) "></path>
+          </g>
+          <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+          </mask>
+          <use id="Combined-Shape" fill="#fff" fill-rule="nonzero" xlink:href="#path-1"></use>
+          <g id="color" mask="url(#mask-2)" fill="#fff">
+            <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

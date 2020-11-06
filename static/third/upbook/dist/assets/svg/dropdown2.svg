@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.2 (81672) - https://sketch.com -->
+    <title>icon/dropdown 2@1x</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M6.75908431,8.14286869 C6.56382217,7.94760654 6.24723968,7.94760654 6.05197753,8.14286869 C5.85671538,8.33813084 5.85671538,8.65471332 6.05197753,8.84997547 L10.6464466,13.4444445 C10.8417088,13.6397067 11.1582912,13.6397067 11.3535534,13.4444445 L15.9480225,8.84997547 C16.1432846,8.65471332 16.1432846,8.33813084 15.9480225,8.14286869 C15.7527603,7.94760654 15.4361778,7.94760654 15.2409157,8.14286869 L11,12.3837844 L6.75908431,8.14286869 Z" id="path-1"></path>
+    </defs>
+    <g id="icon/dropdown-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Path-207" fill="#3B5BDB" fill-rule="nonzero" xlink:href="#path-1"></use>
+        <g id="color-/-Blue-#062037---ui-07" mask="url(#mask-2)" fill="#062037">
+            <rect id="Rectangle" x="0" y="0" width="22" height="22"></rect>
+        </g>
+    </g>
+</svg>
