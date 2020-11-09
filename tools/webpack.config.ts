@@ -14,7 +14,7 @@ import assets from "./webpack.assets.json";
 import webpack from "webpack";
 
 export default (env?: string): webpack.Configuration[] => {
-    const production: boolean = env === "production";
+    const production: boolean = env === "development";
     const config: webpack.Configuration = {
         name: "frontend",
         mode: production ? "production" : "development",
@@ -241,17 +241,17 @@ export default (env?: string): webpack.Configuration[] => {
     // Use the unminified versions of jquery and underscore so that
     // Good error messages show up in production and development in the source maps
     const exposeOptions = [
-        // {path: "./debug-require.js", name: "__require"},
-        // {path: "blueimp-md5/js/md5.js"},
-        // {path: "clipboard/dist/clipboard.js", name: "ClipboardJS"},
-        // {path: "xdate/src/xdate.js", name: "XDate"},
-        // {path: "../static/third/marked/lib/marked.js"},
-        // {path: "../static/js/debug.js"},
+        {path: "./debug-require.js", name: "require"},
+        {path: "blueimp-md5/js/md5.js"},
+        {path: "clipboard/dist/clipboard.js", name: "ClipboardJS"},
+        {path: "xdate/src/xdate.js", name: "XDate"},
+        {path: "../static/third/marked/lib/marked.js"},
+        {path: "../static/js/debug.js"},
         {path: "jquery/dist/jquery.js", name: ["$", "jQuery"]},
         // {path: "underscore/underscore.js", name: "_"},
-        // {path: "handlebars/dist/cjs/handlebars.runtime.js", name: "Handlebars"},
-        // {path: "sortablejs/Sortable.js"},
-        // {path: "winchan/winchan.js", name: "WinChan"},
+        {path: "handlebars/dist/cjs/handlebars.runtime.js", name: "Handlebars"},
+        {path: "sortablejs/Sortable.js"},
+        {path: "winchan/winchan.js", name: "WinChan"},
     ];
     config.module.rules.unshift(...getExposeLoaders(exposeOptions));
 
