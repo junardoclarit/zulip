@@ -14,7 +14,7 @@ import assets from "./webpack.assets.json";
 import webpack from "webpack";
 
 export default (env?: string): webpack.Configuration[] => {
-    const production: boolean = env === "development";
+    const production: boolean = env === "production";
     const config: webpack.Configuration = {
         name: "frontend",
         mode: production ? "production" : "development",
