@@ -37,7 +37,7 @@ export default (env?: string): webpack.Configuration[] => {
                             loader: "webfonts-loader",
                             options: {
                                 fileName: production
-                                    ? "files/[fontname].[chunkhash].[ext]"
+                                    ? "files/[fontname].[ext]"
                                     : "files/[fontname].[ext]",
                                 publicPath: "",
                             },
@@ -143,7 +143,7 @@ export default (env?: string): webpack.Configuration[] => {
                         {
                             loader: "file-loader",
                             options: {
-                                name: production ? "[name].[hash].[ext]" : "[path][name].[ext]",
+                                name: production ? "[path][name].[ext]" : "[path][name].[ext]",
                                 outputPath: "files/",
                             },
                         },
@@ -153,8 +153,8 @@ export default (env?: string): webpack.Configuration[] => {
         },
         output: {
             path: resolve(__dirname, "../static/webpack-bundles"),
-            filename: production ? "[name].[contenthash].js" : "[name].js",
-            chunkFilename: production ? "[contenthash].js" : "[id].js",
+            filename: production ? "[name].js" : "[name].js",
+            chunkFilename: production ? "[id].js" : "[id].js",
         },
         resolve: {
             extensions: [".ts", ".js"],
